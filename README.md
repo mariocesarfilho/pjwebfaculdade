@@ -19,12 +19,19 @@ Cadastro de Faculdades
 •	Campos Disponíveis:
 
 o	Nome: Nome da instituição.
+
 o	E-mail: Endereço eletrônico para contato.
+
 o	Telefone: Número de telefone da faculdade.
+
 o	Cursos: Lista dos cursos previamente cadastrados na página de cursos.
+
 •	Funcionalidades:
+
 o	Adicionar uma nova faculdade com os cursos associados.
+
 o	Visualizar a lista de faculdades cadastradas e os cursos vinculados.
+
 ________________________________________
 Cadastro de Cursos
 
@@ -33,9 +40,13 @@ Cadastro de Cursos
 •	Campos Disponíveis:
 
 o	Nome do Curso: Nome do curso a ser cadastrado.
+
 •	Funcionalidades:
+
 o	Adicionar novos cursos.
+
 o	Visualizar a lista de cursos cadastrados.
+
 ________________________________________
 Tecnologias Utilizadas
 
