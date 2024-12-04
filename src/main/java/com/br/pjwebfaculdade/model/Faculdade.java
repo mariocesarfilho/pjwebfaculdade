@@ -1,6 +1,9 @@
 package com.br.pjwebfaculdade.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "faculdade")
@@ -15,6 +18,13 @@ public class Faculdade {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "faculdade", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<TelefoneFaculdade> telefones;
+
+    @ManyToMany
+    private List<Curso> cursos;
 
     public Faculdade() {
         super();
@@ -49,5 +59,22 @@ public class Faculdade {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setTelefones(List<TelefoneFaculdade> telefones) {
+        if(telefones != null) {
+            for (TelefoneFaculdade telefone : telefones){
+                telefone.setFaculdade(this);
+            }
+        }
+        this.telefones = telefones;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 }
