@@ -30,7 +30,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="#page-top">Start Bootstrap</a></li>
                 <li class="sidebar-nav-item"><a href="index.html">Home</a></li>
-                <li class="sidebar-nav-item"><a href="curso">Cursos</a></li>
+                <li class="sidebar-nav-item"><a href="curso.html">Cursos</a></li>
             </ul>
         </nav>
         <!-- Header-->
@@ -71,18 +71,18 @@
                             placeholder="Email">
                     </div>
 
-                    <!--
+                
                     <div class="row">
                         <h3>Cursos da Faculdade</h3>
-                        <div v-for="disciplina in todasDisciplinas">
-                            <input type="checkbox" :value="disciplina.id" v-model="disciplinas">
-                            {{disciplina.nome}}
+                        <div v-for="curso in todosCursos">
+                            <input type="checkbox" :value="curso.id" v-model="curso">
+                            {{curso.nome}}
                         </div>
                     </div>
 
-                    -->
+               
 
-                    <!--
+                
                     <div class="row">
                         <h3>Telefones</h3>
                         <table class="table table-bordered">
@@ -108,7 +108,6 @@
                         </table>
                     </div>
 
-                    -->
 
 
 
@@ -128,12 +127,16 @@
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Telefone</th>
                         <th scope="col">Ação</th>
                     </tr>
                     <tr v-for="faculdade in faculdades">
                         <td>{{ faculdade.id }}</td>
                         <td>{{ faculdade.nome }}</td>
                         <td>{{ faculdade.email }}</td>
+                        <td>{{ faculdade.cursos }}</td>
+                        <td>{{ faculdade.telefones }}</td>
                         <td>
                             <a class="btn btn-sm btn-info mb-2" @click="editarFaculdade(faculdade)" href="#">Editar</a>
                             &nbsp;
@@ -179,7 +182,10 @@
                         nome: '',
                         email: '',
                         msg: '',
+                        cursos: [],
+                        telefones: [],
                         faculdades: [],
+                        todosCursos: [],
                     }
                 },
 
@@ -189,14 +195,11 @@
                     .then(data => {
                         this.faculdades = data;
                     });
-                    
-
-                    //Se conectar com o Curso
-                    //fetch('http://localhost:8080/ccurso/curso')
-                    //.then(response => response.json())
-                    //.then(data => {
-                      //  this.todosCursos = data
-                    //});
+                    fetch('http://localhost:8080/ccurso/curso') 
+                    .then(response => response.json())
+                    .then(data => {
+                        this.todosCursos = data;
+                    });
                 },
 
                 methods: {
@@ -211,6 +214,8 @@
                     this.id = ''
                     this.nome = ''
                     this.email = ''
+                    this.cursos = ''
+                    this.telefones = ''
 
                    },
                    atualizarFaculdade() {
@@ -219,7 +224,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ nome: this.nome, email: this.email, id: this.id })
+                        body: JSON.stringify({ nome: this.nome, email: this.email, cursos: this.cursos, telefones: this.telefones, id: this.id })
                     }).then(response => response.json())
                     .then(data => {
                         this.carregarFaculdades();
@@ -244,7 +249,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ nome: this.nome, email: this.email })
+                        body: JSON.stringify({ nome: this.nome, email: this.email, cursos: this.cursos, telefones: this.telefones })
                     })
                     .then(response => response.json())
                     .then(data => {
@@ -268,6 +273,16 @@
                     this.id = faculdade.id
                     this.nome = faculdade.nome
                     this.email = faculdade.email
+                    this.cursos = faculdade.cursos.map(c => c.id)
+                    this.telefones = faculdade.telefones
+                   },
+                   adicionarTelefone(event) {
+                    event.preventDefault();
+                    this.telefones.push({ numero: this.telefone })
+                    this.telefone = ''
+                   },
+                   excluirTelefone(index) {
+                    this.telefones.splice(index, 1)
                    }
                 }
             }
