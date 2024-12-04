@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+
+/* Estilos gerais para a seção de cadastro */
+.resume-section {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 1rem auto;
+    max-width: 800px;
+}
+
+.resume-section h2 {
+    color: #343a40;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Formulário */
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.input-group-text {
+    background-color: #e9ecef;
+    border-radius: 5px 0 0 5px;
+}
+
+/* Checkbox e lista de disciplinas */
+.row h3 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #495057;
+}
+
+.row div {
+    margin-bottom: 0.5rem;
+}
+
+/* Telefones */
+.table {
+    width: 100%;
+    margin-top: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+.table th {
+    text-align: center;
+    background-color: #f1f3f5;
+    color: #495057;
+}
+
+.table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table input {
+    margin: 0 auto;
+}
+
+/* Botões */
+.btn {
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Links */
+a {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #bd2130;
+    text-decoration: underline;
+}
