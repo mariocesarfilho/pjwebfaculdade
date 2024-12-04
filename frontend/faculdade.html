@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Cadastro Faculdades</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/styles02.css">
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    </head>
+    <body id="page-top">
+        <div id="app">
+        
+        <!-- Navigation-->
+        <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#page-top">Start Bootstrap</a></li>
+                <li class="sidebar-nav-item"><a href="index.html">Home</a></li>
+                <li class="sidebar-nav-item"><a href="curso.html">Cursos</a></li>
+            </ul>
+        </nav>
+        <!-- Header-->
+        <header class="masthead d-flex align-items-center">
+            <div class="container px-4 px-lg-5 text-center">
+                <h1 class="mb-1">Cadastro</h1>
+                <h3 class="mb-5"><em>De Faculdades</em></h3>
+                <a class="btn btn-primary btn-xl" href="#about">Veja Mais</a>
+            </div>
+        </header>
+        <!-- About-->
+        <section class="content-section bg-light" id="about">
+            <div class="container px-4 px-lg-5 text-center">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                </div>
+            </div>
+        </section>
+
+
+        <section class="resume-section">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Cadastro</h2>
+                <mensagem :msg="msg"></mensagem>
+
+                <form class="form-inline">
+
+                    <input v-model="id" type="hidden">
+                    <label class="sr-only" for="inlineFormInputName2">Nome</label>
+                    <input required v-model="nome" type="text" class="form-control mb-2 mr-sm-2"
+                        id="inlineFormInputName2" placeholder="Nome Faculdade">
+
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Email</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                        </div>
+                        <input v-model="email" type="text" class="form-control" id="inlineFormInputGroupUsername2"
+                            placeholder="Email">
+                    </div>
+
+                    <!--
+                    <div class="row">
+                        <h3>Cursos da Faculdade</h3>
+                        <div v-for="disciplina in todasDisciplinas">
+                            <input type="checkbox" :value="disciplina.id" v-model="disciplinas">
+                            {{disciplina.nome}}
+                        </div>
+                    </div>
+
+                    -->
+
+                    <!--
+                    <div class="row">
+                        <h3>Telefones</h3>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                            <tr v-for="telefone in telefones">
+                                <td>{{telefone.numero}}</td>
+                                <td>
+                                    <a @click="excluirTelefone(index)" href="#">Excluir</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" v-model="telefone" class="form-control mb-2 mr-sm-2"
+                                        id="inlineFormInputName2" placeholder="Telefone">
+                                </td>
+                                <td>
+                                    <button @click="adicionarTelefone" type="submit"
+                                        class="btn btn-primary mb-2">+</button>
+                                </td>
+                        </table>
+                    </div>
+
+                    -->
+
+
+
+                    <button @click="salvarFaculdade" type="submit" class="btn btn-primary mb-2">Salvar</button>
+                </form>
+            </div>
+        </section>
+
+
+        <!--Listar Faculdades-->
+        <section class="resume-section" id="listar">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Listagem de Faculdades</h2>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                    <tr v-for="faculdade in faculdades">
+                        <td>{{ faculdade.id }}</td>
+                        <td>{{ faculdade.nome }}</td>
+                        <td>{{ faculdade.email }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info mb-2" @click="editarFaculdade(faculdade)" href="#">Editar</a>
+                            &nbsp;
+                            <a class="btn btn-sm btn-danger mb-2" @click="excluirFaculdade(faculdade.id)" href="#">Excluir</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        </div>
+
+       
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container px-4 px-lg-5">
+                <ul class="list-inline mb-5">
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white mr-3" href="https://www.instagram.com/mcmofilho.02/"><i class="icon-social-instagram"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white mr-3" href="https://www.linkedin.com/in/m%C3%A1rio-c%C3%A9sar-128155269/"><i class="icon-social-linkedin"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="social-link rounded-circle text-white" href="https://github.com/mariocesarfilho"><i class="icon-social-github"></i></a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-0">Copyright &copy; Your Website 2023</p>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+        <script>
+            const AppFaculdades = {
+                data() {
+                    return {
+                        id: '',
+                        nome: '',
+                        email: '',
+                        msg: '',
+                        faculdades: [],
+                    }
+                },
+
+                mounted() {
+                    fetch('http://localhost:8080/cfaculdade/faculdade')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.faculdades = data;
+                    });
+                    
+
+                    //Se conectar com o Curso
+                    //fetch('http://localhost:8080/ccurso/curso')
+                    //.then(response => response.json())
+                    //.then(data => {
+                      //  this.todosCursos = data
+                    //});
+                },
+
+                methods: {
+                   carregarFaculdades() {
+                    fetch('http://localhost:8080/cfaculdade/faculdade')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.faculdades = data
+                    })
+                   },
+                   novaFaculdade() {
+                    this.id = ''
+                    this.nome = ''
+                    this.email = ''
+
+                   },
+                   atualizarFaculdade() {
+                    fetch(`http://127.0.0.1:8080/cfaculdade/faculdade/${this.id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ nome: this.nome, email: this.email, id: this.id })
+                    }).then(response => response.json())
+                    .then(data => {
+                        this.carregarFaculdades();
+                        this.novaFaculdade();
+                        this.msg = 'Savo com sucesso!!'
+                    }).catch(() => {
+                        this.msg = 'Erro ao Salvar!!'
+                    })
+                   },
+                   salvarFaculdade(event) {
+                    event.preventDefault();
+                    if(this.id) {
+                        this.atualizarFaculdade();
+                    } else {
+                        this.criarFaculdade();
+                    }
+                   },
+                   
+                   criarFaculdade() {
+                    fetch('http://localhost:8080/cfaculdade/faculdade', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ nome: this.nome, email: this.email })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        this.carregarFaculdades();
+                        this.novaFaculdade();
+                        this.msg = 'Salvo com sucesso!!'
+                    }).catch(() => {
+                        this.msg = 'Erro ao Salvar!!'
+                    })
+                   },
+                   excluirFaculdade(id) {
+                    fetch(`http://localhost:8080/cfaculdade/faculdade/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(() => {
+                        this.carregarFaculdades();
+                        this.msg = 'Excluido com sucesso!!'
+                    })
+                   },
+                   editarFaculdade(faculdade) {
+                    this.id = faculdade.id
+                    this.nome = faculdade.nome
+                    this.email = faculdade.email
+                   }
+                }
+            }
+
+            app = Vue.createApp(AppFaculdades)
+            app.component('mensagem', {
+                props: ['msg'],
+                template: '<div class="alert alert-info" v-if="msg">{{msg}}</div>'
+            })
+            app.mount('#app')
+        </script>
+    </body>
+</html>
