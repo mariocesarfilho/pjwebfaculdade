@@ -53,7 +53,7 @@ Tecnologias Utilizadas
 
 •	Backend: Java com SpringBoot
 
-•	Frontend: FremeWord Vue.js
+•	Frontend: FrameWork Vue.js
 
 •	Banco de Dados: MySQL
 
